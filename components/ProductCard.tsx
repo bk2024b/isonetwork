@@ -118,7 +118,7 @@ export default function ProductCard({ product, onView }: ProductCardProps) {
             )}
             {product.specs.display && (
               <span className="px-2 py-0.5 bg-zinc-800 text-zinc-400 text-xs rounded">
-                {product.specs.display.split('"')[0]}"
+                {product.specs.display.split('"')[0]}&quot;
               </span>
             )}
           </div>
