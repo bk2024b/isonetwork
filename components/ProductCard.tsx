@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { MessageCircle, Eye, ChevronLeft, ChevronRight, Package } from 'lucide-react';
 import { Product } from '@/types';
 import { formatPrice, buildWhatsAppLink, WHATSAPP_NUMBER } from '@/lib/utils';

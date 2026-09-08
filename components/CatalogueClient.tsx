@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { Product, FilterState, SortOption } from '@/types';
 import ProductCard from './ProductCard';
 import ProductModal from './ProductModal';
@@ -8,7 +8,6 @@ import {
   Search,
   SlidersHorizontal,
   X,
-  ChevronDown,
   LayoutGrid,
   List,
 } from 'lucide-react';

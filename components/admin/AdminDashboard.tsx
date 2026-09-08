@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import {
@@ -13,7 +13,6 @@ import {
   TrendingUp,
   AlertTriangle,
   Search,
-  X,
   CheckCircle2,
   ExternalLink,
 } from 'lucide-react';

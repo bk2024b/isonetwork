@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, MessageCircle, ShoppingBag } from 'lucide-react';
 
 export default function HeroSection() {
@@ -80,11 +80,14 @@ export default function HeroSection() {
             {/* Glow effect */}
             <div className="absolute inset-0 bg-emerald-500/5 rounded-3xl blur-3xl scale-110" />
             
-            <div className="relative rounded-3xl overflow-hidden border border-zinc-700/50 bg-zinc-900/50 backdrop-blur-sm shadow-2xl">
-              <img
+            <div className="relative rounded-3xl overflow-hidden border border-zinc-700/50 bg-zinc-900/50 backdrop-blur-sm shadow-2xl h-[460px]">
+              <Image
                 src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&q=90"
                 alt="Laptop premium HP EliteBook"
-                className="w-full h-full object-cover"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
               />
               {/* Floating cards */}
               <div className="absolute bottom-6 left-6 right-6">

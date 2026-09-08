@@ -2,15 +2,7 @@
 
 import { useState, useCallback, useRef } from 'react';
 import Image from 'next/image';
-import {
-  X,
-  Upload,
-  ImagePlus,
-  Trash2,
-  Loader2,
-  ChevronDown,
-  GripVertical,
-} from 'lucide-react';
+import { X, ImagePlus, Loader2 } from 'lucide-react';
 import { Product, ProductCategory, ProductCondition, StockStatus } from '@/types';
 
 interface ProductFormModalProps {
