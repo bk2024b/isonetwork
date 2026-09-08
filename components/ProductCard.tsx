@@ -39,6 +39,7 @@ export default function ProductCard({ product, onView }: ProductCardProps) {
             src={product.images[imgIdx].url}
             alt={product.images[imgIdx].alt}
             fill
+            unoptimized={product.images[imgIdx].url.startsWith('data:')}
             className="object-cover group-hover:scale-105 transition-transform duration-500"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />

@@ -27,8 +27,12 @@ export async function POST(request: NextRequest) {
 
     const url = await uploadProductImage(file, safeName);
     return NextResponse.json({ url, filename: safeName });
-  } catch (error) {
-    console.error('Image upload error:', error);
-    return NextResponse.json({ error: 'Upload failed' }, { status: 500 });
+  } catch (error: unknown) {
+    const err = error as Error;
+    console.error('Image upload error:', err);
+    return NextResponse.json(
+      { error: err?.message || 'Échec du téléversement de l\'image' },
+      { status: 500 }
+    );
   }
 }

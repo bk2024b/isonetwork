@@ -165,31 +165,31 @@ export default function ProductFormModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-start justify-center p-4 pt-8 bg-black/80 backdrop-blur-sm overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-start justify-center p-2.5 sm:p-4 sm:pt-8 bg-black/80 backdrop-blur-sm overflow-y-auto"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-2xl bg-zinc-900 border border-zinc-700 rounded-2xl shadow-2xl mb-8"
+        className="relative w-full max-w-2xl bg-zinc-900 border border-zinc-700 rounded-xl sm:rounded-2xl shadow-2xl my-2 sm:my-0 sm:mb-8"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-zinc-800">
-          <h2 className="text-lg font-bold text-zinc-100">
+        <div className="flex items-center justify-between p-4 sm:p-6 border-b border-zinc-800">
+          <h2 className="text-base sm:text-lg font-bold text-zinc-100">
             {isEdit ? 'Modifier le produit' : 'Ajouter un produit'}
           </h2>
           <button
             onClick={onClose}
-            className="p-2 text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 rounded-full transition-colors"
+            className="p-1.5 sm:p-2 text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 rounded-full transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         <form onSubmit={handleSubmit}>
-          <div className="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
+          <div className="p-4 sm:p-6 space-y-5 sm:space-y-6 max-h-[78vh] sm:max-h-[75vh] overflow-y-auto">
             {/* Images */}
             <div>
-              <label className="block text-xs text-zinc-500 uppercase tracking-wider mb-3">
+              <label className="block text-xs text-zinc-500 uppercase tracking-wider mb-2.5 sm:mb-3">
                 Photos du produit
               </label>
 
@@ -202,7 +202,7 @@ export default function ProductFormModal({
                 }}
                 onDragLeave={() => setDragOver(false)}
                 onClick={() => fileInputRef.current?.click()}
-                className={`relative border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all ${
+                className={`relative border-2 border-dashed rounded-xl p-5 sm:p-8 text-center cursor-pointer transition-all ${
                   dragOver
                     ? 'border-emerald-500 bg-emerald-500/10'
                     : 'border-zinc-700 hover:border-zinc-500 bg-zinc-800/40'
@@ -218,39 +218,40 @@ export default function ProductFormModal({
                 />
                 {uploading ? (
                   <div className="flex flex-col items-center gap-2">
-                    <Loader2 className="w-8 h-8 text-emerald-400 animate-spin" />
-                    <p className="text-sm text-zinc-400">Upload en cours...</p>
+                    <Loader2 className="w-7 h-7 sm:w-8 sm:h-8 text-emerald-400 animate-spin" />
+                    <p className="text-xs sm:text-sm text-zinc-400">Upload en cours...</p>
                   </div>
                 ) : (
-                  <div className="flex flex-col items-center gap-2">
-                    <ImagePlus className="w-8 h-8 text-zinc-500" />
-                    <p className="text-sm font-medium text-zinc-400">
-                      Glissez-déposez des photos ici
+                  <div className="flex flex-col items-center gap-1.5 sm:gap-2">
+                    <ImagePlus className="w-7 h-7 sm:w-8 sm:h-8 text-zinc-500" />
+                    <p className="text-xs sm:text-sm font-medium text-zinc-300">
+                      Glissez des photos ici ou <span className="text-emerald-400 underline">parcourir</span>
                     </p>
-                    <p className="text-xs text-zinc-600">ou cliquez pour sélectionner</p>
-                    <p className="text-xs text-zinc-700">JPEG, PNG, WebP · max 5 Mo</p>
+                    <p className="text-[11px] sm:text-xs text-zinc-500">Prend aussi les photos de votre téléphone</p>
+                    <p className="text-[10px] sm:text-xs text-zinc-600">JPEG, PNG, WebP · max 5 Mo</p>
                   </div>
                 )}
               </div>
 
               {uploadError && (
-                <p className="mt-2 text-sm text-red-400">{uploadError}</p>
+                <p className="mt-2 text-xs sm:text-sm text-red-400">{uploadError}</p>
               )}
 
               {/* Image previews */}
               {form.images.length > 0 && (
-                <div className="mt-3 grid grid-cols-4 gap-2">
+                <div className="mt-3 grid grid-cols-3 sm:grid-cols-4 gap-2">
                   {form.images.map((img, i) => (
-                    <div key={i} className="relative aspect-square rounded-lg overflow-hidden bg-zinc-800 group">
+                    <div key={i} className="relative aspect-square rounded-lg overflow-hidden bg-zinc-800 group border border-zinc-700">
                       <Image
                         src={img.url}
                         alt={img.alt}
                         fill
+                        unoptimized
                         className={`object-cover ${img.uploading ? 'opacity-50' : ''}`}
                         sizes="120px"
                       />
                       {img.uploading && (
-                        <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/40">
                           <Loader2 className="w-5 h-5 text-emerald-400 animate-spin" />
                         </div>
                       )}
@@ -258,9 +259,10 @@ export default function ProductFormModal({
                         <button
                           type="button"
                           onClick={() => removeImage(i)}
-                          className="absolute top-1 right-1 p-1 bg-black/70 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                          className="absolute top-1 right-1 p-1 bg-black/80 hover:bg-red-600 text-white rounded-full transition-colors"
+                          title="Supprimer la photo"
                         >
-                          <X className="w-3 h-3" />
+                          <X className="w-3.5 h-3.5" />
                         </button>
                       )}
                     </div>
@@ -470,14 +472,14 @@ export default function ProductFormModal({
           </div>
 
           {/* Footer actions */}
-          <div className="flex gap-3 p-6 border-t border-zinc-800">
-            <button type="button" onClick={onClose} className="flex-1 btn-secondary">
+          <div className="flex gap-2.5 sm:gap-3 p-4 sm:p-6 border-t border-zinc-800">
+            <button type="button" onClick={onClose} className="flex-1 btn-secondary justify-center py-2.5 sm:py-3 text-sm">
               Annuler
             </button>
             <button
               type="submit"
               disabled={loading || uploading}
-              className="flex-1 btn-primary justify-center disabled:opacity-50"
+              className="flex-1 btn-primary justify-center py-2.5 sm:py-3 text-sm disabled:opacity-50"
             >
               {loading ? (
                 <>

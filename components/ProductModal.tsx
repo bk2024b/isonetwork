@@ -80,6 +80,7 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
                   src={product.images[imgIdx].url}
                   alt={product.images[imgIdx].alt}
                   fill
+                  unoptimized={product.images[imgIdx].url.startsWith('data:')}
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
@@ -119,7 +120,7 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
                       i === imgIdx ? 'border-emerald-500' : 'border-zinc-700 hover:border-zinc-500'
                     }`}
                   >
-                    <Image src={img.url} alt={img.alt} fill className="object-cover" sizes="64px" />
+                    <Image src={img.url} alt={img.alt} fill unoptimized={img.url.startsWith('data:')} className="object-cover" sizes="64px" />
                   </button>
                 ))}
               </div>

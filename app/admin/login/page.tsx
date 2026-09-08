@@ -52,7 +52,7 @@ export default function AdminLoginPage() {
         </div>
 
         {/* Card */}
-        <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-8">
+        <div className="bg-zinc-900 border border-zinc-800 rounded-xl sm:rounded-2xl p-5 sm:p-8">
           <div className="flex items-center gap-2 mb-6">
             <Lock className="w-4 h-4 text-zinc-500" />
             <span className="text-sm text-zinc-400">Connexion sécurisée</span>
